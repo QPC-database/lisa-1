@@ -53,3 +53,5 @@ else
     fi
     echo "KEY_GENERATED_SUCCESSFULLY"
 fi
+systemctl stop iptables || service iptables stop
+systemctl disable iptables || service iptables disable
