@@ -74,7 +74,13 @@ if [ $sshdServiceStatus == 0 ]; then
 else
     echo "SSHD_RESTART_FAIL"
 fi
-systemctl disable iptables || service iptables disable
+
+if [[ -d /run/systemd/system ]];then
+    systemctl disable iptables
+else
+    service iptables disable
+fi
+
 sync
 
 exit 0

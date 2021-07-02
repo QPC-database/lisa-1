@@ -408,9 +408,6 @@ Config_"${OS_FAMILY}"
 # Remove old crashkernel params
 sed -i --follow-symlinks "s/crashkernel=\S*//g" $boot_filepath
 
-# Remove console params; It could interfere with the testing
-sed -i --follow-symlinks "s/console=\S*//g" $boot_filepath
-
 # Add the crashkernel param
 if [[ $DISTRO != "redhat_8" ]] && [[ $DISTRO != "centos_8" ]] && [[ $DISTRO != "almalinux_8" ]]; then
     sed -i --follow-symlinks "/vmlinuz-$(uname -r)/ s/$/ crashkernel=$crashkernel/" $boot_filepath
