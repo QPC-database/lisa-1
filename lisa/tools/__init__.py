@@ -10,15 +10,19 @@ from .echo import Echo
 from .find import Find
 from .gcc import Gcc
 from .git import Git
+from .hwclock import Hwclock
 from .lscpu import Lscpu
 from .lsmod import Lsmod
 from .lspci import Lspci
 from .lsvmbus import Lsvmbus
 from .make import Make
 from .modinfo import Modinfo
+from .ntp import Ntp
+from .ntpstat import Ntpstat
 from .ntttcp import Ntttcp
 from .nvmecli import Nvmecli
 from .reboot import Reboot
+from .service import Service
 from .uptime import Uptime
 from .who import Who
 
@@ -30,16 +34,20 @@ __all__ = [
     "Find",
     "Gcc",
     "Git",
+    "Hwclock",
     "Lscpu",
     "Lsmod",
     "Lspci",
     "Lsvmbus",
     "Make",
     "Modinfo",
+    "Ntp",
+    "Ntpstat",
     "Ntttcp",
     "Nvmecli",
     "Reboot",
     "Uname",
+    "Service",
     "Uptime",
     "Wget",
     "Who",

@@ -5,7 +5,7 @@ from typing import List, Optional, Union
 from assertpy import assert_that
 
 from lisa import Node, TestCaseMetadata, TestSuite, TestSuiteMetadata
-from lisa.tools import Cat, Dmesg, Lscpu
+from lisa.tools import Cat, Dmesg, Hwclock, Lscpu, Ntp, Ntpstat
 from lisa.tools.lscpu import CpuType
 from lisa.util.perf_timer import create_timer
 
@@ -237,3 +237,29 @@ class TimeSync(TestSuite):
                     f"After unbind {clock_event_name}, current clock event should "
                     f"equal to [lapic]."
                 ).is_true()
+
+    @TestCaseMetadata(
+        description="""
+        This test is to check -
+
+        """,
+        priority=2,
+    )
+    def timesync_ntp(self, node: Node) -> None:
+        hwclock = node.tools[Hwclock]
+        ntp = node.tools[Ntp]
+        ntp.restart()
+        hwclock.set_rtc_clock_to_system_time()
+        ntp.check_delay()
+        ntpstat = node.tools[Ntpstat]
+        ntpstat.check_clock_sync()
+
+    @TestCaseMetadata(
+        description="""
+        This test is to check -
+
+        """,
+        priority=2,
+    )
+    def timesync_chrony(self, node: Node) -> None:
+        pass
